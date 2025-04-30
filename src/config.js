@@ -9,27 +9,27 @@ module.exports = {
   unixSocketPermissions: 0o777,
 
   // enable to read x-forwarded-for
-  trustProxy: process.env.TRUST_PROXY === 'true',
+  trustProxy: process.env.TRUST_PROXY === 'false',
 
   // removes IP addresses from logs
-  anonymizeAddresses: process.env.ANONYMIZE_ADDRESSES === 'true',
+  anonymizeAddresses: process.env.ANONYMIZE_ADDRESSES === 'false',
 
   // anonymize generated usernames like "player123456"
-  anonymizeGeneratedUsernames: true,
+  anonymizeGeneratedUsernames: false,
 
   // change this to an object to enable the WebSocket per-message deflate extension
   perMessageDeflate: false,
 
   // If set to a non-zero number, sends will be buffered to this many per second
   // This can significantly improve performance
-  bufferSends: 60,
+  bufferSends: 200,
 
   enableRename: false,
 
   enableDelete: false,
 
   logging: {
-    console: true,
+    console: false,
 
     // passed directly into winston-daily-rotate-file
     // see here for options: https://github.com/winstonjs/winston-daily-rotate-file#options
@@ -38,8 +38,8 @@ module.exports = {
       // LOGS_DIRECTORY is used by systemd services with the LogsDirectory= directive
       dirname: process.env.LOGS_DIRECTORY || 'logs',
       datePattern: 'YYYY-MM-DD',
-      maxFiles: '7d',
-      createSymlink: true,
+      maxFiles: '1d',
+      createSymlink: false,
     },
   },
 };
